@@ -16,3 +16,10 @@ Route::get('/checklist', [ChecklistController::class, 'index'])->name('checklist
 Route::post('/checklist', [ChecklistController::class, 'store'])->name('checklist.store');
 Route::post('/checklist/toggle/{id}', [ChecklistController::class, 'toggle'])->name('checklist.toggle');
 Route::delete('/checklist/{url}', [ChecklistController::class, 'destroy'])->name('checklist.destroy');
+
+Route::get('/clear-cache', function() {
+    Artisan::call('config:cache');
+    Artisan::call('view:cache');
+    Artisan::call('route:cache');
+    return "Laravel is fully optimized and cached!";
+});
